@@ -12,7 +12,9 @@ build/
 
 # Variáveis de ambiente
 .env
-.env.*
+.env.local
+
+# .env.example vai para o git (template sem secrets)
 
 # IDEs
 .vscode/
