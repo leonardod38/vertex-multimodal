@@ -232,6 +232,59 @@ py deploy_vertex.py             # Deploy no Vertex AI
 
 ---
 
+## Resultados
+
+### Dataset
+| Métrica | Valor |
+|---|---|
+| Total de registros | 14.000 |
+| Registros com imagem vinculada | 13.684 (97,7%) |
+| Total de imagens | 58.311 .jpg |
+| Tamanho do dataset | ~1,5 GB |
+
+### Distribuição do Target — `AdoptionSpeed`
+| Classe | Descrição | Registros | % |
+|---|---|---|---|
+| 0 | Adotado no mesmo dia | 387 | 2,8% |
+| 1 | Até 7 dias | 2.878 | 20,6% |
+| 2 | Até 30 dias | 3.781 | 27,0% |
+| 3 | Até 90 dias | 3.055 | 21,8% |
+| 4 | Não adotado | 3.899 | 27,8% |
+
+> Dataset desbalanceado — classe 4 domina. Baseline aleatório = **20%** (5 classes).
+
+### Modelo
+| Métrica | Valor |
+|---|---|
+| Parâmetros totais | 2.435.941 |
+| Parâmetros treináveis | 177.957 (7,3%) |
+| Backbone (frozen) | 2.257.984 |
+| Tamanho do modelo | ~9,3 MB |
+
+### Treino — Experimento 1 (backbone congelado, 1k registros)
+| Época | Train Acc | Val Acc | Val Loss |
+|---|---|---|---|
+| 1 | 25,4% | **32,0%** ← melhor | 1,607 |
+| 2 | 28,9% | 30,9% | 1,511 |
+| 3 | 34,2% | 29,4% | 1,470 |
+| 4 | 35,4% | 30,9% | 1,484 |
+| 5 | 42,3% | 28,9% | 1,546 |
+
+> **Melhor val_accuracy: 32%** contra baseline aleatório de 20% (+60% de ganho relativo).
+> Overfitting a partir da época 2 — esperado com 776 exemplos. Fine-tuning com 14k dados é o próximo passo.
+
+### Infraestrutura e Custo
+| Item | Valor |
+|---|---|
+| Tempo de treino (CPU local, 5 épocas) | ~15 minutos |
+| Tempo de pré-processamento 14k | ~3 segundos |
+| Upload 58k imagens para GCS | ~5 minutos |
+| Deploy endpoint Vertex AI | ~8 minutos |
+| **Custo total do projeto (GCP)** | **~$0.10** |
+| Custo mensal atual (Storage 28MB) | ~$0.001 |
+
+---
+
 ## Tecnologias
 
 `Python 3.11` · `TensorFlow 2.21` · `Keras` · `MobileNetV2` · `Scikit-learn` · `Pandas`
