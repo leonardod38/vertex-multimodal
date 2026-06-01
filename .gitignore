@@ -36,3 +36,4 @@ models/saved_model_export/
 
 # Claude settings
 .claude/
+CLAUDE.md
