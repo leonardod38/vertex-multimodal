@@ -30,6 +30,7 @@ credentials.json
 # Dados e modelos (grandes — ficam no Cloud Storage)
 data/petfinder/
 data/processed/
+data/*.zip
 models/*.keras
 models/saved_model_export/
 
