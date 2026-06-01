@@ -20,3 +20,16 @@ build/
 
 # Logs
 *.log
+
+# Credenciais GCP
+credentials.json
+*.json.key
+
+# Dados e modelos (grandes — ficam no Cloud Storage)
+data/petfinder/
+data/processed/
+models/*.keras
+models/saved_model_export/
+
+# Claude settings
+.claude/
