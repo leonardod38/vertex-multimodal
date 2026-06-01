@@ -1,5 +1,7 @@
 """
-v1.0.0 - 2026-06-01 - Upload modelo → Vertex AI Model Registry → Endpoint → Predição → Cleanup
+v1.1.0 - 2026-06-01 - Nota: predição online limitada a 1.5MB (224x224x3 excede)
+                       Use batch prediction ou reduza input para inferência online.
+v1.0.0 - 2026-06-01 - Upload modelo → Vertex AI Model Registry → Endpoint → Cleanup
 Fluxo completo de validação para portfólio.
 """
 import logging
